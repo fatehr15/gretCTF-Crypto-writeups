@@ -203,3 +203,35 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+```
+
+
+
+
+##Out put :
+
+```markdown
+$ python3 solve.py challs.nusgreyhats.org 33302
+[*] Connecting to challs.nusgreyhats.org:33302...
+[+] Connection established
+[*] Getting initial state T0...
+[+] T0 collected: 9454ff94946b2f2ee8a196ffde6fb43579485ac8ab43dc921d3babad8c5d79326dc0bcab9549613bc04953f4483f0da7a698f16fff584a60e11397750b6ca3139779
+[*] Collecting 100 opens...
+[+] Collected 10 opens
+[+] Collected 20 opens
+[+] Collected 30 opens
+[+] Collected 40 opens
+[+] Collected 50 opens
+[+] Collected 60 opens
+[+] Collected 70 opens
+[+] Collected 80 opens
+[+] Collected 90 opens
+[+] Collected 100 opens
+[*] Building position sets...
+[*] Recovering XOR mask...
+[*] Verifying flag...
+[+] Success! Flag: grey{kinda_long_flag_but_whatever_65k2n427c61ww064ac3vhzigae2qg}
+
+
+```
