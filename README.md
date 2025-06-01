@@ -6,7 +6,7 @@
 ---
 
 ## 📂 Directory Structure
-
+```bash
 .
 ├── README.md ← Top-level overview (this file)
 │
@@ -29,7 +29,7 @@
 │
 └── exploit/
 └── solve.py ← Exploit script / final solver
-
+```
 
 ---
 
@@ -73,7 +73,7 @@ This repository collects all the materials and analyses for the following GreyCT
 
 ## 📜 License  
 
-This repository is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
+This repository is for learning stuff (no license).
 
 ---
 
