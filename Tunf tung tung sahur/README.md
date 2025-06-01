@@ -5,7 +5,7 @@ By:zor_4n6
 
 ---
 
-## 🧠 Challenge Description
+## Challenge Description
 
 New to the world of brainrot? Not sure what names to pick from? We've got you covered with a list of our faves:
 
@@ -33,7 +33,7 @@ Sahur!
 
 ---
 
-## 🔍 Challenge Analysis
+##  Challenge Analysis
 
 The code follows these steps:
 
@@ -94,7 +94,7 @@ grey{tUn9_t00nG_t0ONg_x7_th3n_s4hUr}
 
 ---
 
-## 🔐 Key Takeaways
+## Key Takeaways
 
 * This is a twist on **low-exponent RSA** where the ciphertext is modified with doubling and modulus reduction.
 * Knowing the number of operations allows us to reverse them easily.
@@ -102,7 +102,7 @@ grey{tUn9_t00nG_t0ONg_x7_th3n_s4hUr}
 
 ---
 
-## 🎭 Brainrot References
+## Brainrot References
 
 * The repeated "Tung!" and "Sahur!" are meme elements from Indonesian or Malay brainrot meme culture, referencing sounds associated with chaotic Ramadan mornings.
 * Challenge adds a fun and humorous twist while staying technically sound.
