@@ -4,7 +4,7 @@ By : zor_4n6
 ## Challenge Overview
 
 **Challenge Name:** Shaker  
-**Category:** Cryptography / Reverse Engineering  
+**Category:** Cryptography
 **Difficulty:** Medium  
 
 **Description:**  
