@@ -75,14 +75,12 @@ import socket
 import sys
 from collections import defaultdict
 
-# Constants
-MD5_HASH    = "4839d730994228d53f64f0dca6488f8d"
+MD5_HASH = "4839d730994228d53f64f0dca6488f8d"
 KNOWN_PREFIX = b'grey{'
-MAX_OPENS   = 100
-TIMEOUT     = 5
+MAX_OPENS = 100
+TIMEOUT = 5
 
 def recv_until_prompt(sock):
-    """Receive data until the prompt '>' appears."""
     data = b''
     while True:
         chunk = sock.recv(4096)
@@ -108,32 +106,33 @@ def main():
             s.connect((host, port))
             print("[+] Connection established")
 
-            # Wait for initial prompt
+            # Get initial prompt
             recv_until_prompt(s)
 
             def send_command(cmd):
-                """Send a command and read until the next '>' prompt."""
                 s.sendall(cmd.encode() + b'\n')
                 response = recv_until_prompt(s)
                 return response
 
-            # 1) Get initial state T0 (first "open")
+            # Get initial state (T0)
             print("[*] Getting initial state T0...")
-            response = send_command('2')  # '2' = open
-            if 'Result:' not in response:
+            response = send_command('2')
+            
+            # Parse response - look for hex string after "Result:"
+            if 'Result:' in response:
+                hex_str = response.split('Result: ')[1].split('\n')[0].strip()
+                try:
+                    T0 = bytes.fromhex(hex_str)
+                    print(f"[+] T0 collected: {T0.hex()}")
+                except ValueError:
+                    print("[-] Invalid hex string in response")
+                    sys.exit(1)
+            else:
                 print("[-] Unexpected response format:")
                 print(response)
                 sys.exit(1)
 
-            hex_str = response.split('Result: ')[1].split('\n')[0].strip()
-            try:
-                T0 = bytes.fromhex(hex_str)
-                print(f"[+] T0 collected: {T0.hex()}")
-            except ValueError:
-                print("[-] Invalid hex string in response")
-                sys.exit(1)
-
-            # 2) Collect multiple "open" outputs (permutations of flag⊕x)
+            # Collect multiple opens
             print(f"[*] Collecting {MAX_OPENS} opens...")
             T_list = []
             for i in range(MAX_OPENS):
@@ -142,8 +141,8 @@ def main():
                     hex_str = response.split('Result: ')[1].split('\n')[0].strip()
                     try:
                         T_list.append(bytes.fromhex(hex_str))
-                        if (i + 1) % 10 == 0:
-                            print(f"[+] Collected {i + 1} opens")
+                        if (i+1) % 10 == 0:
+                            print(f"[+] Collected {i+1} opens")
                     except ValueError:
                         print(f"[-] Invalid hex at open {i}")
                         continue
@@ -151,61 +150,47 @@ def main():
                     print(f"[-] Bad response at open {i}")
                     continue
 
-            # 3) Build sets S[j] = { all observed bytes at offset j across opens }
+            # Build position sets
             print("[*] Building position sets...")
             S = [set() for _ in range(64)]
             for t in T_list:
                 for j in range(64):
                     S[j].add(t[j])
 
-            # 4) Recover XOR mask x[]
+            # Recover XOR mask
             print("[*] Recovering XOR mask...")
             x = [0] * 64
-            # 4a) First 5 bytes from known prefix "grey{"
             for j in range(len(KNOWN_PREFIX)):
                 x[j] = T0[j] ^ KNOWN_PREFIX[j]
 
-            # 4b) Remaining 59 bytes via frequency analysis
+            # Recover remaining bytes
             for j in range(5, 64):
                 count = defaultdict(int)
-                # For every possible pair (byte_at_pos0, byte_at_posj)
                 for a in S[0]:
                     for b in S[j]:
                         count[a ^ b] += 1
-                best_diff = max(count.items(), key=lambda item: item[1])[0]
-                # best_diff ≈ ( (flag[0]⊕x[0]) ⊕ (flag[j]⊕x[j]) )
-                # ⇒ x[j] = x[0] ⊕ best_diff ⊕ flag[0]
-                # But since flag[0] = ord('g'), and x[0] = (T0[0]⊕'g'), we can rearrange:
-                #   (flag[0]⊕x[0]) = T0[0]
-                # So best_diff = T0[0] ⊕ (flag[j]⊕x[j])  
-                # ⇒ (flag[j]⊕x[j]) = T0[0] ⊕ best_diff  
-                # ⇒ x[j] = (flag[j]) ⊕ [T0[0] ⊕ best_diff]  
-                # But we do not know flag[j] yet!  
-                # Instead, note that (flag[j]⊕x[j]) ⊕ (flag[0]⊕x[0]) = best_diff.  
-                # Since flag[0]⊕x[0] = T0[0], we have:  
-                #   (flag[j]⊕x[j]) = best_diff ⊕ T0[0]  
-                # Therefore:
-                x[j] = x[0] ^ best_diff
+                best_d = max(count.items(), key=lambda x: x[1])[0]
+                x[j] = x[0] ^ best_d
 
-            # 5) Reconstruct flag: flag[i] = T0[i] ^ x[i]
+            # Reconstruct flag
             flag = bytes(T0[i] ^ x[i] for i in range(64))
-
-            # 6) Verify MD5
+            
+            # Validate flag
             print("[*] Verifying flag...")
             if hashlib.md5(flag).hexdigest() == MD5_HASH:
                 print(f"[+] Success! Flag: {flag.decode()}")
             else:
                 print("[-] Failed to recover valid flag")
                 print(f"Expected MD5: {MD5_HASH}")
-                print(f"Actual MD5:   {hashlib.md5(flag).hexdigest()}")
+                print(f"Actual MD5: {hashlib.md5(flag).hexdigest()}")
+                print(f"Flag (hex): {flag.hex()}")
 
     except Exception as e:
-        print(f"[-] Error: {e}")
+        print(f"[-] Error: {str(e)}")
         sys.exit(1)
 
 if __name__ == '__main__':
     main()
-
 ```
 
 
