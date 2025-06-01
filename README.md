@@ -5,7 +5,7 @@
 
 ---
 
-## 📂 Directory Structure
+## Directory Structure
 ```bash
 .
 ├── README.md ← Top-level overview (this file)
@@ -33,12 +33,12 @@
 
 ---
 
-## 📖 Overview
+## Overview
 
 This repository collects all the materials and analyses for the following GreyCTF 2025 qualifier challenges solved by **Zor_4n6**:
 
 1. **IDK**  
-   - Challenge files are stored under `IDK/dist-idk.zip`.  
+   - Challenge files are stored under `IDK/dist-IDK.zip`.  
    - Detailed writeup and solution steps found in `IDK/README.md`.
 
 2. **Tunf tung tung sahur**  
@@ -49,12 +49,12 @@ This repository collects all the materials and analyses for the following GreyCT
 3. **haker-challenge**  
    - Provided challenge code (`shaker.py`) is inside `haker-challenge/dist-shaker/dist-shaker/`.  
    - Final exploit script is at `haker-challenge/exploit/solve.py`.  
-   - Full writeup documenting reverse-engineering or exploitation steps is in `haker-challenge/README.md`.
+   - Full writeup documenting exploitation steps is in `haker-challenge/README.md`.
 
 ---
 
 
-**Clone the repo**  
+## Clone the repo  
    ```bash
    git clone https://github.com/your-username/gretCTF-Crypto-writeups.git
    cd gretCTF-Crypto-writeups
@@ -62,7 +62,7 @@ This repository collects all the materials and analyses for the following GreyCT
 
 ---
 
-## 🤝 Contributing & Feedback  
+## Contributing & Feedback  
 
 - **Found an Issue?**  
   - Typos, broken links, or inaccuracies in any writeup—please open an Issue.  
@@ -71,13 +71,13 @@ This repository collects all the materials and analyses for the following GreyCT
 
 ---
 
-## 📜 License  
+## License  
 
 This repository is for learning stuff (no license).
 
 ---
 
-### 🙏 Acknowledgments  
+### Acknowledgments  
 - **GreyCTF Organizers (Singapore)** – for hosting an amazing event with diverse, creative challenges.  
 - **1nno$leuths Team Members** – collaboration and support during the CTF.  
 - **All Participants & Community** – for feedback, and post-CTF discussions.  
