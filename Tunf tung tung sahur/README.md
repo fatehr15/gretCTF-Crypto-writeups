@@ -105,7 +105,7 @@ grey{tUn9_t00nG_t0ONg_x7_th3n_s4hUr}
 ## Brainrot References
 
 * The repeated "Tung!" and "Sahur!" are meme elements from Indonesian or Malay brainrot meme culture, referencing sounds associated with chaotic Ramadan mornings.
-* Challenge adds a fun and humorous twist while staying technically sound.
+* Challenge adds a fun and humorous twist while staying technically sound. The first one I solved (My scrolling time isn't for nothing XD)
 
 ---
 
