@@ -1,11 +1,19 @@
 # Tung Tung Tung Sahur
 By:zor_4n6
 
-**Author**: elijah5399
 
 ---
 
 ## Challenge Description
+**Challenge Name:** Tung Tung Tung Sahur
+
+**Category:** Cryptography (EZPZ)
+
+**Author**: elijah5399
+
+**Difficulty:** Easy 
+
+**Description:**  
 
 New to the world of brainrot? Not sure what names to pick from? We've got you covered with a list of our faves:
 
