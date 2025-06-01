@@ -76,76 +76,80 @@ By computing the GCD of `N` with these sums or differences, we can recover the p
 ```python
 import math
 
-def extended_gcd(a, b):
-  if a == 0:
-      return b, 0, 1
-  g, y, x = extended_gcd(b % a, a)
-  return g, x - (b // a) * y, y
-
 def inverse(a, n):
-  g, x, _ = extended_gcd(a, n)
-  if g != 1:
-      return None
-  return x % n
+    # Extended Euclidean Algorithm to find modular inverse
+    g, x, y = extended_gcd(a, n)
+    if g != 1:
+        return None  # inverse doesn't exist
+    else:
+        return x % n
+
+def extended_gcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
+    else:
+        g, y, x = extended_gcd(b % a, a)
+        return (g, x - (b // a) * y, y)
 
 def long_to_bytes(x):
-  return x.to_bytes((x.bit_length() + 7) // 8, "big")
+    return x.to_bytes((x.bit_length() + 7) // 8, 'big')
 
-# Read parameters from message.txt
+# Read N, e, c from message.txt
 with open("message.txt") as f:
-  data = f.read().splitlines()
-  N = int(data[0].split(" = ")[1])
-  e = int(data[1].split(" = ")[1])
-  c = int(data[2].split(" = ")[1])
+    data = f.read().splitlines()
+    N = int(data[0].split(" = ")[1])
+    e = int(data[1].split(" = ")[1])
+    c = int(data[2].split(" = ")[1])
 
-# Calculate m1 and m2 as in prover.py
+# Parameters
 kappa = 128
 alpha = 65537
 m1 = math.ceil(kappa / math.log(alpha, 2))
 m2 = math.ceil(kappa * 32 * 0.69314718056)
 
+# Parse dump files
 def parse_dump(filename):
-  with open(filename) as f:
-      lines = [line.strip() for line in f.readlines()]
-  # μ_j values start at line index (1 + m1), each in hex
-  mus = [int(lines[i], 16) for i in range(1 + m1, 1 + m1 + m2)]
-  return mus
+    with open(filename) as f:
+        lines = [line.strip() for line in f.readlines()]
+    F_hex = lines[0]
+    sigmas = [int(lines[i], 16) for i in range(1, 1 + m1)]
+    mus = [int(lines[i], 16) for i in range(1 + m1, 1 + m1 + m2)]
+    return F_hex, sigmas, mus
 
-mus1 = parse_dump("dump1.txt")
-mus2 = parse_dump("dump2.txt")
+F_hex1, sigmas1, mus1 = parse_dump("dump1.txt")
+F_hex2, sigmas2, mus2 = parse_dump("dump2.txt")
 
-p = q = None
-
+# Find factors by comparing mus
+p_found, q_found = None, None
 for j in range(m2):
-  mu1 = mus1[j]
-  mu2 = mus2[j]
-  if mu1 == 0 or mu2 == 0 or mu1 == mu2:
-      continue
+    mu1 = mus1[j]
+    mu2 = mus2[j]
+    if mu1 == 0 or mu2 == 0:
+        continue
+    if mu1 == mu2:
+        continue
+    diff = abs(mu1 - mu2)
+    g1 = math.gcd(diff, N)
+    if g1 != 1 and g1 != N:
+        p_found = g1
+        q_found = N // g1
+        break
+    s = mu1 + mu2
+    g2 = math.gcd(s, N)
+    if g2 != 1 and g2 != N:
+        p_found = g2
+        q_found = N // g2
+        break
 
-  # Try GCD of difference
-  diff = abs(mu1 - mu2)
-  g1 = math.gcd(diff, N)
-  if g1 not in (1, N):
-      p = g1
-      q = N // g1
-      break
+if p_found is None or q_found is None:
+    print("Failed to factor N")
+    exit(1)
 
-  # Try GCD of sum
-  s = mu1 + mu2
-  g2 = math.gcd(s, N)
-  if g2 not in (1, N):
-      p = g2
-      q = N // g2
-      break
-
-# Compute φ(N) and private exponent d
-phi = (p - 1) * (q - 1)
+# Decrypt the ciphertext
+phi = (p_found - 1) * (q_found - 1)
 d = inverse(e, phi)
-
-# Decrypt the flag
 flag = pow(c, d, N)
 print(long_to_bytes(flag).decode())
-
   ```
 
 ## Script Output:
