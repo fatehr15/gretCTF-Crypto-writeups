@@ -20,8 +20,7 @@ The goal is to recover the original flag from these obfuscated states.
 
 ## Key Challenge Files
 
-- **server.py**: Implements the `Shaker` class and service logic  
-- **flag.txt**: Contains the flag to be recovered (not provided)
+- **server.py**: Implements the `Shaker` class and service logic 
 
 ---
 
