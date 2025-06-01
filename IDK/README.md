@@ -138,7 +138,7 @@ print(long_to_bytes(flag).decode())
 
   ```
 
-##Script Output:
+## Script Output:
 
 ```bash
 $ python solve.py
@@ -146,7 +146,7 @@ grey{consistency_is_key_in_zero_knowledge_proofs}
 
 ```
 
-##Flag :
+## Flag :
 ```txt
 grey{consistency_is_key_in_zero_knowledge_proofs}
 ```
