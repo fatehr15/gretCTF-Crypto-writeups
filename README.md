@@ -10,25 +10,25 @@
 .
 ├── README.md ← Top-level overview (this file)
 │
-├── IDK/ ← “IDK” challenge folder
-│ ├── README.md ← Writeup & instructions for IDK
-│ └── dist-idk.zip ← Challenge distribution (binary, files, etc.)
+├── IDK/ 
+│  ├── README.md 
+│  └── dist-idk.zip 
 │
-├── Tunf tung tung sahur/ ← “Tunf tung tung sahur” challenge folder
-│ ├── README.md ← Writeup & instructions for this challenge
-│ └── dist-tung_tung_tung_sahur/ ← Distribution folder
-│ ├── tung_tung_tung_sahur.py ← Solver script (Python)
-│ └── output.txt ← Script output or decrypted flag
+├── Tunf tung tung sahur/ 
+│  ├── README.md 
+│  └── dist-tung_tung_tung_sahur/ 
+│     ├── tung_tung_tung_sahur.py 
+│     └── output.txt 
 │
-└── haker-challenge/ ← “haker-challenge” folder
-├── README.md ← Writeup & instructions for haker-challenge
+└── haker-challenge/
+├── README.md 
 │
-├── dist-shaker/ ← Provided challenge code or binary
-│ └── dist-shaker/
-│ └── shaker.py ← Provided script, stub, or binary
+├── dist-shaker/ 
+│   └── dist-shaker/
+│        └── shaker.py 
 │
 └── exploit/
-└── solve.py ← Exploit script / final solver
+    └── solve.py 
 ```
 
 ---
