@@ -7,6 +7,7 @@ By : zor_4n6
 **Category:** Cryptography
 
 **Author:** hadnot
+
 **Difficulty:** Medium  
 
 **Description:**  
