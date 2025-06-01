@@ -1,5 +1,3 @@
-![Shaker Challenge Writeup](file-service://file-HYzsu54h9rojiwkwP6zo1d)
-
 # Shaker Challenge Writeup – greyCTF
 
 ## Challenge Overview
