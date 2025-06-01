@@ -6,7 +6,7 @@ By : zor_4n6
 **Challenge Name:** Shaker  
 **Category:** Cryptography
 
-
+**Author: ** hadnot
 **Difficulty:** Medium  
 
 **Description:**  
