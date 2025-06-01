@@ -209,7 +209,7 @@ if __name__ == '__main__':
 
 
 
-##Out put :
+## Out put :
 
 ```markdown
 $ python3 solve.py challs.nusgreyhats.org 33302
@@ -235,3 +235,8 @@ $ python3 solve.py challs.nusgreyhats.org 33302
 
 
 ```
+
+
+## The flag :
+ grey{kinda_long_flag_but_whatever_65k2n427c61ww064ac3vhzigae2qg}
+
