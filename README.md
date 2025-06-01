@@ -1,7 +1,7 @@
 # greyCTF-Crypto-writeups
 
 **Author:** Zor_4n6 (1nno$leuths Team, Algeria)  
-**Description:** A consolidated collection of writeups, solution scripts, and related files for various GreyCTF 2025 qualifier challenges.
+**Description:** A consolidated collection of writeups, solution scripts, and related files for 3 GreyCTF 2025 qualifier challenges.
 
 ---
 
@@ -21,14 +21,14 @@
 │     └── output.txt 
 │
 └── haker-challenge/
-├── README.md 
-│
-├── dist-shaker/ 
-│   └── dist-shaker/
-│        └── shaker.py 
-│
-└── exploit/
-    └── solve.py 
+   ├── README.md 
+   │
+   ├── dist-shaker/ 
+   │   └── dist-shaker/
+   │        └── shaker.py 
+   │
+   └── exploit/
+       └── solve.py 
 ```
 
 ---
