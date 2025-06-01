@@ -42,7 +42,7 @@ Crucial observations:
 ### Exploitation Strategy
 
 1. **Collect Observations:**  
-   Perform multiple “open” operations to collect ≈ 100 different permutations of `(flag ⊕ x)`.
+   Perform multiple “open” operations to collect ≈ 100 different permutations of `(flag ⊕ x)`. (متعب)
 
 2. **Recover XOR Mask `x`:**  
    - Known‐plaintext: We know the flag begins with ASCII “`grey{`” (5 bytes).  
