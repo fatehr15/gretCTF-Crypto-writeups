@@ -1,4 +1,4 @@
-# GreyCTF Challenge Writeup: RSA Factorization via Inconsistent Square Roots
+# GreyCTF Challenge Writeup: IDK
 
 ## Challenge Overview
 The challenge involves breaking an RSA cryptosystem by exploiting a flaw in a zero-knowledge proof implementation. The proof is designed to verify knowledge of the prime factors of the modulus `N` without revealing them. However, two execution traces (`dump1.txt` and `dump2.txt`) leak enough information to factor `N` and decrypt the flag.
